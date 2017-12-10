@@ -5,8 +5,8 @@
       public $connect;  
       private $host = "localhost";  
       private $username = 'root';  
-      private $password = '';  
-      private  $database = 'crud';  
+      private $password = '123456';  
+      private  $database = 'db_monitoring';  
       function __construct()  
       {  
            $this->database_connect();  
@@ -47,7 +47,54 @@
            }  
            $output .= '</table>';  
            return $output;  
-      }       
+      } 
+      public function get_resident_data($query) {  
+           $output = '';  
+           $result = $this->execute_query($query);  
+           $output .= '  
+             
+           ';  
+           while($row = mysqli_fetch_object($result))  
+           {  
+                if($row->gender== 'M'){
+                  $gender = 'Male';
+                }else{
+                  $gender = 'Female';
+                }
+                $output .= '  
+                <tr>       
+                     <td>'.$row->resident_id.'</td>  
+                     <td>'.$row->first_name.'</td>  
+                     <td>'.$row->last_name.'</td>  
+                     <td>'.$row->address.'</td>  
+                     <td>'.$gender.'</td>  
+                     <td>'.$row->birthday.'</td>  
+                     <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs updateResident">Update</button><button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs deleteResident">Delete</button></td>  
+                </tr>  
+                ';  
+           }  
+           $output .= '';  
+           return $output;  
+      } 
+      public function get_question_data($query) {  
+           $output = '';  
+           $result = $this->execute_query($query);  
+           $output .= '  
+             
+           ';  
+           while($row = mysqli_fetch_object($result))  
+           {  
+                $output .= '  
+                <tr>       
+                     <td>'.$row->question_id.'</td>  
+                     <td>'.$row->question.'</td>  
+                     <td><button type="button" name="update" id="'.$row->question_id.'" class="btn btn-success btn-xs updateQuestion">Update</button></td>  
+                </tr>  
+                ';  
+           }  
+           $output .= '';  
+           return $output;  
+      }      
       // function upload_file($file)  
       // {  
       //      if(isset($file))  
