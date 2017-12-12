@@ -2,17 +2,17 @@
     <div class="container-fluid"> 
                 <div class="row">
 
-						<?php include 'includes/sidemenu.php';?> 
+						<?php //include 'includes/sidemenu.php';?> 
               			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	          				<h1 class="page-header">Residents</h1>
+	          				<h1 class="page-header">Employees</h1>
 							<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
-							  Add resident
+							  Add Employee
 							</button>	
 			          			<div class="row placeholders">
 				          	
 							            <table class="table table-bordered table-striped">  
 								                <tr>  
-								                     <th width="14%">Resident ID</th>  
+								                     <th width="14%">Employee ID</th>  
 								                     <th width="14%">First Name</th>  
 								                     <th width="14%">Last Name</th>  
 								                     <th width="14%">Address</th>  
@@ -31,16 +31,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Add Employee</h4>
       </div>
       <div class="modal-body">
-       			<form class="form-horizontal" id="residentform" method="Post" class="collapse">
+       			<form class="form-horizontal" id="employeeform" method="Post" class="collapse">
       <div class="modal-body">
         
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-3 control-label text-left">Resident ID</label>
+          <label for="inputEmail3" class="col-sm-3 control-label text-left">Employee ID</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control"  name="residentID" id="residentID" placeholder="Resident ID" readonly="true" value="<?php echo $num = substr(str_shuffle("0123456789"), -4);?>">
+            <input type="text" class="form-control"  name="employeeID" id="employeeID" placeholder="Employee ID" readonly="true" value="<?php echo $num = substr(str_shuffle("0123456789"), -4);?>">
           </div>
         </div>
         <div class="form-group">
@@ -80,11 +80,11 @@
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-3 control-label text-left">Birthday</label>
           <div class="col-sm-9">
-            <input type="date" class="form-control"  name="bday" id="bday"  placeholder="Birthday">
+            <input type="date" class="form-control" name="bday" id="bday"  placeholder="Birthday">
           </div>
         </div>
-        <input type="hidden" name="action" id="action" value="addResident" />
-        <input type="hidden" name="res_id" id="res_id" />
+        <input type="hidden" name="action" id="action" value="addEmployee" />
+        <input type="hidden" name="employee_id" id="employee_id" />
         
       </div>
       <div class="modal-footer">

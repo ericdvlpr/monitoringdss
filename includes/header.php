@@ -5,8 +5,8 @@
  ?> 
  <html>  
       <head>  
-   		<title>Monitoring System DSS</title> 
-	     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
+   		<title>Transaction Processing System</title> 
+	     <link rel="stylesheet" href="css/bootstrap.min.css" />  
 	      <link rel="stylesheet" href="css/style.css">
       </head> 
  <body>  

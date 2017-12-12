@@ -2,7 +2,7 @@
            load_resident_data();  
            load_questions_data();
            function load_resident_data(){  
-                var action = "Resident";  
+                var action = "Employee";  
                 $.ajax({  
                      url:"core/action.php",  
                      method:"POST",  
@@ -25,7 +25,7 @@
                      }  
                 });  
            }  
-           $('#residentform').on('submit', function(event){  
+           $('#employeeform').on('submit', function(event){  
                 event.preventDefault();  
                 // var action=$('#action').val();
                $.ajax({  
@@ -38,7 +38,7 @@
                     {  
                          $('#myModal').modal('toggle');
                          alert(data);  
-                         $('#residentform')[0].reset();  
+                         $('#employeeform')[0].reset();  
                          load_resident_data();  
                     }  
                });  
@@ -61,7 +61,7 @@
                     }  
                });  
            });
-          $(document).on('click','.updateResident', function(){
+          $(document).on('click','.updateEmployee', function(){
                   var res_id = $(this).attr("id");
                   $('#button_action').val("Save changes");
 
@@ -69,13 +69,13 @@
                   $.ajax({
                     url:"core/action.php",
                     method:"POST",
-                    data:{res_id:res_id,action:action},
+                    data:{employee_id:res_id,action:action},
                     dataType:"json",
                     success:function(data){
-
+                      
                       $("#myModal").modal('show');
-                      $("#res_id").val(data.id);
-                      $("#residentID").val(data.resident_id);
+                      $("#employee_id").val(data.id);
+                      $("#employeeID").val(data.employees_id);
                       $("#lname").val(data.lname);
                       $("#fname").val(data.fname);
                       $("#mdname").val(data.mdname);
@@ -86,16 +86,16 @@
                     }
                   });
                 });
-                $(document).on('click','.deleteResident', function(){
+                $(document).on('click','.deleteEmployee', function(){
                     var res_id = $(this).attr("id");
 
-                    var action = "Delete Resident";
+                    var action = "Delete";
                     if(confirm("Are you sure you want to delete?") == true) {
                     
                           $.ajax({
                             url:"core/action.php",
                             method:"POST",
-                            data:{res_id:res_id,action:action},
+                            data:{employee_id:res_id,action:action},
                             success:function(data){
                               
                               alert(data);

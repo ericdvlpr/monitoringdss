@@ -5,8 +5,8 @@
       public $connect;  
       private $host = "localhost";  
       private $username = 'root';  
-      private $password = '123456';  
-      private  $database = 'db_monitoring';  
+      private $password = '';  
+      private  $database = 'db_gfctps';  
       function __construct()  
       {  
            $this->database_connect();  
@@ -63,13 +63,13 @@
                 }
                 $output .= '  
                 <tr>       
-                     <td>'.$row->resident_id.'</td>  
+                     <td>'.$row->employee_id.'</td>  
                      <td>'.$row->first_name.'</td>  
                      <td>'.$row->last_name.'</td>  
                      <td>'.$row->address.'</td>  
                      <td>'.$gender.'</td>  
                      <td>'.$row->birthday.'</td>  
-                     <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs updateResident">Update</button><button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs deleteResident">Delete</button></td>  
+                     <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs updateEmployee">Update</button><button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs deleteEmployee">Delete</button></td>  
                 </tr>  
                 ';  
            }  
