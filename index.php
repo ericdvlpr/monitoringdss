@@ -4,32 +4,70 @@
 
 						<?php include 'includes/sidemenu.php';?> 
               			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          				<h1 class="page-header">DashboardS</h1>
+          				<h1 class="page-header">Dashboard</h1>
 
 			          <div class="row placeholders">
-			            <div class="col-xs-6 col-sm-3 placeholder">
-			              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-			              <h4>Label</h4>
-			              <span class="text-muted">Something else</span>
-			            </div>
-			            <div class="col-xs-6 col-sm-3 placeholder">
-			              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-			              <h4>Label</h4>
-			              <span class="text-muted">Something else</span>
-			            </div>
-			            <div class="col-xs-6 col-sm-3 placeholder">
-			              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-			              <h4>Label</h4>
-			              <span class="text-muted">Something else</span>
-			            </div>
-			            <div class="col-xs-6 col-sm-3 placeholder">
-			              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-			              <h4>Label</h4>
-			              <span class="text-muted">Something else</span>
-			            </div>
+			          	<div class="col-md-3">
+			          		<div class="panel panel-default">
+								  <div class="panel-heading">
+								    <h3 class="panel-title">No of Residents</h3>
+								  </div>
+								  <div class="panel-body">
+								    	<h1><?php echo $object->count_total_resident(); ?></h1>
+								  </div>
+							</div>
+			          	</div>
+			            <div class="col-md-3">
+			            	<div class="panel panel-default">
+								  <div class="panel-heading">
+								    <h3 class="panel-title">No of Grant for Medicine</h3>
+								  </div>
+								  <div class="panel-body">
+								    	<h1><?php echo $object->count_total_medicines(); ?></h1>
+								  </div>
+							</div>
+			            </div>	
+						<div class="col-md-3">
+							<div class="panel panel-default">
+								  <div class="panel-heading">
+								    <h3 class="panel-title">No of Grant for School Supplies</h3>
+								  </div>
+								  <div class="panel-body">
+								    	<h1><?php echo $object->count_total_supplies(); ?></h1>
+								  </div>
+							</div>
+						</div>	
+						<div class="col-md-3">
+							<div class="panel panel-default">
+								  <div class="panel-heading">
+								    <h3 class="panel-title">No of Grant for Scholarship</h3>
+								  </div>
+								  <div class="panel-body">
+								    	<h1><?php echo $object->count_total_scholarship(); ?></h1>
+								  </div>
+							</div>
+						</div>	
+						<div class="col-md-3">
+							<div class="panel panel-default">
+								  <div class="panel-heading">
+								    <h3 class="panel-title">No of Exam Takers</h3>
+								  </div>
+								  <div class="panel-body">
+								    	<h1><?php echo $object->count_total_user(); ?></h1>
+								  </div>
+							</div>
+						</div>	
+						<div class="col-md-3">
+							<div class="panel panel-default">
+								  <div class="panel-heading">
+								    <h3 class="panel-title">No of Users</h3>
+								  </div>
+								  <div class="panel-body">
+								    	<h1><?php echo $object->count_total_user(); ?></h1>
+								  </div>
+							</div>
+						</div>	
 			          </div>
-
-			          <h2 class="sub-header">Section title</h2> 
            </div>
      </div>  
 </div>  

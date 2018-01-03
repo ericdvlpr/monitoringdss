@@ -8,6 +8,10 @@
           					<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModalExam">
 							  Add Questions
 							</button>
+							<?php 
+								
+ 			
+							?>
 					          <div class="row placeholders">
 						            <table class="table table-condensed">
 									 		<tr>
@@ -34,68 +38,54 @@
 	      	 <div class="form-group">
 	      	 	<div class="col-sm-10">
 	      	 		<label for="inputEmail3" class="control-label"><strong>Please type your new question here</strong></label>
-			     <textarea class="form-control" id="mcdesc" name="desc" ></textarea>
+					<input name="question" class="form-control" type="text" id="question" required="required"></input>
 	      	 	</div>
 	       		  
 			    </div>
+				Choices :
 			    <div class="form-group">
-			    	<label class="col-sm-10">Please create the first answer for the question</label>
-			    	<div class="col-sm-6">
-					        <input class="form-control " type="text" id="mcanswer1" name="answer1">
-					</div>        
-					<div class="col-sm-6">        
-					          <label style="cursor:pointer; color:#06F;">
-					          <input type="radio" name="iscorrect" value="answer1">Correct Answer?
-					        </label>
-			    	</div>  
-			    </div>  
-			     <div class="form-group">
-			     	<div class="col-sm-10">
-			    		<strong>Please create the second answer for the question</strong>
-			    	</div>
-			    	<div class="col-sm-6">
-				        <input class="form-control" type="text" id="mcanswer2" name="answer2">
-				    </div>
-				    <div class="col-sm-6">      
-				          <label style="cursor:pointer; color:#06F;">
-				          <input type="radio" name="iscorrect" value="answer2">Correct Answer?
-				        </label>
-			      	</div>  
-			    </div>
-			    <div class="form-group">
-			    	<div class="col-sm-10">
-					    <strong>Please create the third answer for the question</strong>
+			    	 <label for="inputEmail3" class="col-sm-2 control-label">A</label>
+			    	<input type="hidden" value="A" readonly="readonly"></input>
+					<div class="col-sm-10">
+						<input name="cA" id="cA" class="span4 form-control" type="text" required="required"></input>
 					</div>
-					<div class="col-sm-6">
-							<input class="form-control" type="text" id="mcanswer3" name="answer3">
+			   	</div>
+				<div class="form-group">
+			    	 <label for="inputEmail3" class="col-sm-2 control-label">B</label>
+			    	<input type="hidden" value="B" readonly="readonly"></input>
+					<div class="col-sm-10">
+						<input name="cB" id="cB" class="span4 form-control" type="text" required="required"></input>
 					</div>
-					<div class="col-sm-6">
-						<label style="cursor:pointer; color:#06F;">
-					          <input type="radio" name="iscorrect" value="answer3">Correct Answer?
-					        </label>
-					</div>        
-					          
+			   	</div>			
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">C</label>
+					<input type="hidden" value="C" readonly="readonly"></input>
+					<div class="col-sm-10">
+						<input  name="cC" id="cC" class="span4 form-control" type="text" required="required"></input>
+					</div>
 				</div>
 				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">D</label>
+					<input type="hidden" value="D" readonly="readonly"></input>
 					<div class="col-sm-10">
-			    			<strong>Please create the fourth answer for the question</strong>
+						<input name="cD" id="cD" class="span4 form-control" type="text" required="required"></input>
 					</div>
-					<div class="col-sm-6">
-						<input class="form-control" type="text" id="mcanswer4" name="answer4">
-					</div>
-					<div class="col-sm-6">        
-					          <label style="cursor:pointer; color:#06F;">
-					          <input type="radio" name="iscorrect" value="answer4">Correct Answer?
-					        </label>
-					</div>
+				</div>	
+				<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Answer :</label>
+						<div class="col-sm-2">
+							<input name="answer" id="answer" class="span1 form-control" type="text" required="required"></input>
+						</div>		
 				</div>
+						<input type="hidden" name="action" id="action" value="addQuestion" />
+				        <input type="hidden" name="question_id" id="question_id" />
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <button type="submit" class="btn btn-primary">Save changes</button>
+					      </div>		
+			    </div>  
 	      </div>
-	      <input type="hidden" name="action" id="action" value="addQuestion" />
-        <input type="hidden" name="question_id" id="question_id" />
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div>
+	      
       </form>
     </div>
   </div>
