@@ -6,8 +6,8 @@ session_start();
       public $connect;  
       private $host = "localhost";  
       private $username = 'root';  
-      private $password = '123456';  
-      private  $database = 'db_monitoring';  
+      private $password = '';  
+      private  $database = 'db_gfctps';  
       function __construct()  
       {  
            $this->database_connect();  
@@ -55,12 +55,22 @@ session_start();
                 }
                 $output .= '  
                 <tr>       
+<<<<<<< HEAD
                      <td><a href="viewResident.php?id='.$row->resident_id.'">'.$row->resident_id.'</a></td>  
                      <td>'.$row->resident_name.'</td>   
                      <td>'.$row->address.'</td>  
                      <td>'.$gender.'</td>  
                      <td>'.$row->birthday.'</td>  
                      <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs updateResident">Update</button></td>  
+=======
+                     <td>'.$row->employee_id.'</td>  
+                     <td>'.$row->first_name.'</td>  
+                     <td>'.$row->last_name.'</td>  
+                     <td>'.$row->address.'</td>  
+                     <td>'.$gender.'</td>  
+                     <td>'.$row->birthday.'</td>  
+                     <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs updateEmployee">Update</button><button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs deleteEmployee">Delete</button></td>  
+>>>>>>> 20afe5cb6d52073d81ee2718285fc03eecdc6e2e
                 </tr>  
                 ';  
            }  

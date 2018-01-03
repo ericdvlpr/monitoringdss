@@ -3,7 +3,7 @@
            load_questions_data();
             load_grant_data();
            function load_resident_data(){  
-                var action = "Resident";  
+                var action = "Employee";  
                 $.ajax({  
                      url:"core/action.php",  
                      method:"POST",  
@@ -24,7 +24,7 @@
                      {  
                           $('#question_table').html(data);  
                      }  
-                });  
+
            }
            function load_grant_data(){  
                 var action = "Grant";  
@@ -57,6 +57,8 @@
            //     });  
            // });
            $('#grantform').on('submit', function(event){  
+           }  
+           $('#employeeform').on('submit', function(event){  
                 event.preventDefault();  
                 // var action=$('#action').val();
                $.ajax({  
@@ -69,8 +71,13 @@
                     {  
                          $('#myModal').modal('toggle');
                          alert(data);  
+
                          $('#grantform')[0].reset();  
                          load_grant_data();  
+
+                         $('#employeeform')[0].reset();  
+                         load_resident_data();  
+
                     }  
                });  
            });
@@ -103,13 +110,13 @@
                   $.ajax({
                     url:"core/action.php",
                     method:"POST",
-                    data:{res_id:res_id,action:action},
+                    data:{employee_id:res_id,action:action},
                     dataType:"json",
                     success:function(data){
-
+                      
                       $("#myModal").modal('show');
-                      $("#res_id").val(data.id);
-                      $("#residentID").val(data.resident_id);
+                      $("#employee_id").val(data.id);
+                      $("#employeeID").val(data.employees_id);
                       $("#lname").val(data.lname);
                       $("#fname").val(data.fname);
                       $("#mdname").val(data.mdname);
@@ -120,6 +127,7 @@
                     }
                   });
                 });
+<<<<<<< HEAD
           $(document).on('click','.updateQuestion', function(){
                   var question_id = $(this).attr("id");
                   $('#button_action').val("Save changes");
@@ -147,13 +155,13 @@
                 $(document).on('click','.deleteResident', function(){
                     var res_id = $(this).attr("id");
 
-                    var action = "Delete Resident";
+                    var action = "Delete";
                     if(confirm("Are you sure you want to delete?") == true) {
                     
                           $.ajax({
                             url:"core/action.php",
                             method:"POST",
-                            data:{res_id:res_id,action:action},
+                            data:{employee_id:res_id,action:action},
                             success:function(data){
                               
                               alert(data);

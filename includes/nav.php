@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: gray;">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -14,7 +14,5 @@
             
             <li><a href="settings.php">Settings</a></li>
             <li><a href="logout_parse.php">Logout</a></li>
-          </ul>
-        </div>
       </div>
     </nav>
