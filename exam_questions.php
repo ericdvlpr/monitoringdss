@@ -5,9 +5,9 @@
 						<?php include 'includes/sidemenu.php';?> 
               			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           					<h1 class="page-header">Exam Questions</h1>
-          					<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModalExam">
+          					<!-- <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModalExam">
 							  Add Questions
-							</button>
+							</button> -->
 							<?php 
 								
  			

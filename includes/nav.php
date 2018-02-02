@@ -9,6 +9,7 @@
           </button>
           <a class="navbar-brand" href="index.php">Monitoring System And Decision Support</a>
         </div>
+        
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             

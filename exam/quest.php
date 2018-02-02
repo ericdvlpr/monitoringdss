@@ -23,15 +23,9 @@ include_once('myconnection.php');
 <?php 
 $codec= $_SESSION['mycode'];
 $get_set = mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM codes WHERE passcode='$codec'"));
-if($get_set[4] == 'A'){
-	include_once('set_a.php');
-}elseif($get_set[4] == 'B'){
-	include_once('set_b.php');
-}else{
-	include_once('set_c.php');
-}
+include_once('set_a.php');
 ?>
-<input type="hidden" name="sets" value="<?php echo $get_set[4]; ?>"></input>
+<input type="hidden" name="sets" value="A"></input>
 </form>
 </body>
 </html>
