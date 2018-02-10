@@ -121,6 +121,7 @@ if(isset($_POST["action"])) {
               $output["age"] = $row["age"];
               $output["gender"] = $row["gender"];
               $output["grade_ave"] = $row["grade_ave"];
+              $output["educational"] = $row["educational"];
 
               
             }
