@@ -2,11 +2,11 @@
  //action.php  
  include 'database.php';  
  $object = new Database();  
-if(isset($_POST["action"])) {  
+if(isset($_POST["action"])) {
         if($_POST["action"] == "Load") {  
              echo $object->get_data_in_table("SELECT * FROM users ORDER BY id DESC");  
         }
-        if($_POST["action"] == "Employee") {  
+        if($_POST["action"] == "Resident") {  
              echo $object->get_resident_data("SELECT * FROM employees");  
         } 
         if($_POST["action"] == "Questions") {  
@@ -14,8 +14,7 @@ if(isset($_POST["action"])) {
         }
         if($_POST["action"] == "Grant") {  
              echo $object->get_grant_data("SELECT * FROM grant_table");  
-        } 
-
+        }
         if($_POST["action"] == "addResident") {
                 $residentID = mysqli_escape_string($object->connect,$_POST['residentID']);
                 $resident_name = mysqli_escape_string($object->connect,$_POST['name']);
@@ -24,28 +23,33 @@ if(isset($_POST["action"])) {
                 $bday = mysqli_escape_string($object->connect,$_POST['bday']);
                 $spouse = mysqli_escape_string($object->connect,$_POST['spname']);
                 $income = mysqli_escape_string($object->connect,$_POST['income']);  
-          for($count = 0; $count < count($_POST["chname"]); $count++)
-          {  
+                $occupation = mysqli_escape_string($object->connect,$_POST['occupation']);  
+                $spoccupation = mysqli_escape_string($object->connect,$_POST['spoccupation']);  
+                $educ_attained = mysqli_escape_string($object->connect,$_POST['educ_attained']);
+                $speduc_attained = mysqli_escape_string($object->connect,$_POST['speduc_attained']);  
+          for($count = 0; $count < count($_POST["chname"]); $count++) {  
             $code = substr(str_shuffle("0123456789"), -4);
+            $code = $code + 1;
+            $residentCode = substr(str_shuffle("0123456789"), -4);
             $name = $_POST["chname"][$count];
             $chbday = $_POST["chbday"][$count];
+            $educational = $_POST["educational"][$count];
             $today = date("Y-m-d");
-            $diff = date_diff(date_create( $bday), date_create($today));
+            $diff = date_diff(date_create($chbday), date_create($today));
             $age=$diff->format('%y');
             $gender = $_POST["chgender"][$count];
             $grade = $_POST["chgrade"][$count];
-            $query1="INSERT INTO family_table(fam_id,child_name,age,gender,grade_ave,code) VALUES ('".$residentID."','".$name."','".$age."','".$gender."','".$grade."','".$code."')";
+            $query1="INSERT INTO family_table(fam_id,resident_id,chresident_name,age,gender,grade_ave,educational,code) VALUES ('".$residentID."','".$residentCode."','".$name."','".$age."','".$gender."','".$grade."','".$educational."','".$code."')";
             $query3 = "INSERT INTO codes(name,passcode)VALUES('".$name."','".$code."')";
-            $query4="INSERT INTO residents(resident_id,resident_name,address,gender,birthday) VALUES ('". $code."','".$name."','".$address."','".$gender."','".$chbday."')";  
+           
               $object->execute_query($query1);
               $object->execute_query($query3);
-              $object->execute_query($query4);
 
           }
-            $query2="INSERT INTO residents(resident_id,resident_name,address,gender,birthday,spouse_name,annual_income) VALUES ('".$residentID."','".$resident_name."','".$address."','".$resident_gender."','".$bday."','".$spouse."','".$income."')";
+            $query2="INSERT INTO residents(resident_id,resident_name,address,gender,birthday,spouse_name,annual_income,occupation,spoccupation,educational_attained,speducational_attained) VALUES ('".$residentID."','".$resident_name."','".$address."','".$resident_gender."','".$bday."','".$spouse."','".$income."','".$occupation."','".$spoccupation."','".$educ_attained."','".$speduc_attained."')";
           $object->execute_query($query2);
          echo 'Data Inserted';
-        }
+        }    
         if($_POST['action'] == "addGrant"){
           $grantName = mysqli_escape_string($object->connect,$_POST['grantName']);
           $gpa = mysqli_escape_string($object->connect,$_POST['gpa']);
@@ -53,45 +57,27 @@ if(isset($_POST["action"])) {
           $age_ave = mysqli_escape_string($object->connect,$_POST['age_ave']);
           $query="INSERT INTO grant_table(grant_name,grade_average,annual_income,age_average) VALUES ('".$grantName."','".$gpa."','".$income."','".$age_ave."')";
               $object->execute_query($query);
-            echo 'Data Inserted';  
-        if($_POST["action"] == "addEmployee") {  
-           $employeeID = mysqli_escape_string($object->connect,$_POST['employeeID']);
-           $lname = mysqli_escape_string($object->connect,$_POST['lname']);
-           $fname = mysqli_escape_string($object->connect,$_POST['fname']);
-           $mdname = mysqli_escape_string($object->connect,$_POST['mdname']);
-           $address = mysqli_escape_string($object->connect,$_POST['address']);
-           $gender = mysqli_escape_string($object->connect,$_POST['gender']);
-            $bday = mysqli_escape_string($object->connect,$_POST['bday']);    
-           $query="INSERT INTO employees(employee_id,last_name,first_name,middle_name,address,gender,birthday) VALUES ('".$employeeID."','".$lname."','".$fname."','".$mdname."','".$address."','".$gender."','".$bday."')";
-          $object->execute_query($query);
-          echo 'Data Inserted';
+            echo 'Data Inserted';
         }
-        if($_POST["action"]=="Fetch Single Data") {
-            $output =array();
-            $query = "SELECT * FROM employees WHERE id ='".$_POST['employee_id']."'";
-            $result = $object->execute_query($query);
-            while($row = mysqli_fetch_array($result)) {
-              $output["id"] = $row["id"];
-
-              $output["resident_id"] = $row["resident_id"];
-              $output["name"] = $row["resident_name"];
-
-              $output["employees_id"] = $row["employee_id"];
-              $output["lname"] = $row["last_name"];
-              $output["fname"] = $row["first_name"];
-              $output["mdname"] = $row["middle_name"];
-              $output["address"] = $row["address"];
-              if($row["gender"]== 'M'){
-                $gender = 'Male';
-              }else{
-                $gender = 'Female';
+          if($_POST["action"]=="Fetch Resident Data") {
+              $output =array();
+              $query = "SELECT * FROM residents WHERE id ='".$_POST['resident_id']."'";
+              $result = $object->execute_query($query);
+              while($row = mysqli_fetch_array($result)) {
+                $output["id"] = $row["id"];
+                $output["resident_id"] = $row["resident_id"];
+                $output["name"] = $row["resident_name"];
+                $output["address"] = $row["address"];
+                $output["gender"] = $row["gender"];
+                $output["bday"] = $row["birthday"];
+                $output["spouse_name"]=  $row["spouse_name"];
+                $output["annual_income"] = $row["annual_income"];
+                $output["occupation"] = $row["occupation"];
+                $output["spoccupation"] = $row["spoccupation"];
+                $output["educational_attained"] = $row["educational_attained"];
+                $output["speducational_attained"] = $row["speducational_attained"];
               }
-              $output["gender"] = $row["gender"];
-              $output["bday"] = $row["birthday"];
-                            $output["spouse_name"]=  $row["spouse_name"];
-              $output["annual_income"] = $row["annual_income"];
-            }
-            echo json_encode($output);
+              echo json_encode($output);
           }
           if($_POST["action"]=="Fetch Question Data") {
             $output =array();
@@ -109,6 +95,37 @@ if(isset($_POST["action"])) {
             }
             echo json_encode($output);
           }
+          if($_POST["action"]=="Fetch Grant Data") {
+            $output =array();
+            $query = "SELECT * FROM grant_table WHERE id ='".$_POST['grant_id']."'";
+            $result = $object->execute_query($query);
+            while($row = mysqli_fetch_array($result)) {
+              $output["id"] = $row["id"];
+              $output["grant_name"] = $row["grant_name"];
+              $output["grade_average"] = $row["grade_average"];
+              $output["annual_income"] = $row["annual_income"];
+              $output["age_average"] = $row["age_average"];
+
+              
+            }
+            echo json_encode($output);
+          }
+          if($_POST["action"]=="Fetch Child Data") {
+            $output =array();
+            $query = "SELECT * FROM family_table WHERE id ='".$_POST['resident_id']."'";
+            $result = $object->execute_query($query);
+            while($row = mysqli_fetch_array($result)) {
+              $output["id"] = $row["id"];
+              $output["resident_id"] = $row["resident_id"];
+              $output["resident_name"] = $row["chresident_name"];
+              $output["age"] = $row["age"];
+              $output["gender"] = $row["gender"];
+              $output["grade_ave"] = $row["grade_ave"];
+
+              
+            }
+            echo json_encode($output);
+          }
           if($_POST['action']=="Edit Question") {
                $question = mysqli_escape_string($object->connect,$_POST['question']);
                $a = mysqli_escape_string($object->connect,$_POST['cA']);
@@ -118,16 +135,41 @@ if(isset($_POST["action"])) {
                $answer = mysqli_escape_string($object->connect,$_POST['answer']);
                $query = "UPDATE questions SET question='$question', a='$a', b='$b', c='$c', d='$d', answerki='$answer' WHERE id ='".$_POST['question_id']."' ";
               $object->execute_query($query);
+              echo 'Questions Updated';/**/
+          }
+          if($_POST['action']=="Edit Grant") {
+              $grantName = mysqli_escape_string($object->connect,$_POST['grantName']);
+              $gpa = mysqli_escape_string($object->connect,$_POST['gpa']);
+              $income = mysqli_escape_string($object->connect,$_POST['income']);
+              $age_ave = mysqli_escape_string($object->connect,$_POST['age_ave']);
+          $query="UPDATE grant_table SET grant_name='$grantName',grade_average='$gpa',annual_income='$income',age_average='$age_ave' WHERE id ='".$_POST['grant_id']."'";
+              $object->execute_query($query);
+
               echo 'Data Updated';/**/
           }
-          if($_POST['action']=="Edit") {
-               $lname = mysqli_escape_string($object->connect,$_POST['question']);
-               $fname = mysqli_escape_string($object->connect,$_POST['fname']);
-               $mdname = mysqli_escape_string($object->connect,$_POST['mdname']);
+          if($_POST['action']=="Edit Resident") {
+
+               $name = mysqli_escape_string($object->connect,$_POST['name']);
                $address = mysqli_escape_string($object->connect,$_POST['address']);
                $gender = mysqli_escape_string($object->connect,$_POST['gender']);
                $bday = mysqli_escape_string($object->connect,$_POST['bday']);
-              $query = "UPDATE employees SET last_name ='$lname', first_name = '$fname', middle_name='$mdname', address='$address', gender='$gender', birthday='$bday' WHERE id = '".$_POST['employee_id']."' ";
+               $spname = mysqli_escape_string($object->connect,$_POST['spname']);
+               $income = mysqli_escape_string($object->connect,$_POST['income']);
+                $occupation = mysqli_escape_string($object->connect,$_POST['occupation']);  
+                $spoccupation = mysqli_escape_string($object->connect,$_POST['spoccupation']);  
+                $educ_attained = mysqli_escape_string($object->connect,$_POST['educ_attained']);
+                $speduc_attained = mysqli_escape_string($object->connect,$_POST['speduc_attained']);  
+               $query = "UPDATE residents SET resident_name ='$name', address='$address', gender='$gender', birthday='$bday',spouse_name='$spname',annual_income='$income',occupation='$occupation',spoccupation='$spoccupation',educational_attained='$educ_attained',speducational_attained='$speduc_attained' WHERE id = '".$_POST['resident_id']."' ";
+              $object->execute_query($query);
+              echo 'Data Updated';/**/
+          }
+          if($_POST['action']=="Edit Child") {
+               $name = mysqli_escape_string($object->connect,$_POST['name']);
+               $age = mysqli_escape_string($object->connect,$_POST['age']);
+               $gender = mysqli_escape_string($object->connect,$_POST['gender']);
+               $grade_ave = mysqli_escape_string($object->connect,$_POST['grade_ave']);
+               $educational = mysqli_escape_string($object->connect,$_POST['educational']);
+               $query = "UPDATE family_table SET chresident_name ='$name',  age='$age', gender='$gender', grade_ave='$grade_ave',educational='$educational' WHERE id = '".$_POST['resident_id']."' ";
               $object->execute_query($query);
               echo 'Data Updated';/**/
           }
@@ -158,5 +200,39 @@ if(isset($_POST["action"])) {
             echo 'Data Inserted';
             
           }
+           if($_POST["action"] == "Search") {
+            $search = mysqli_real_escape_string($object->connect, $_POST["query"]);
+            $query = "
+            SELECT resident_id,chresident_name FROM family_table
+            WHERE chresident_name LIKE '%".$search."%' OR resident_id LIKE '%".$search."%'
+            GROUP BY id DESC
+            ";
+           $result = $object->execute_query($query);
+            while($row = mysqli_fetch_assoc($result)) {
+             $output['resident_id'] = $row["resident_id"];
+             $output['resident_name'] = $row["chresident_name"];
+            
+            }
+
+          echo json_encode($output);
+        }
+        if($_POST["action"] == "validate") {
+            $search = mysqli_real_escape_string($object->connect, $_POST["query"]);
+            $query = "
+            SELECT * FROM residents
+            WHERE resident_name ='".$search."'";
+           $result = $object->execute_query($query);
+           $countName = mysqli_num_rows($result);
+          echo $countName;
+        }
+        if($_POST["action"] == "validate spouse") {
+            $search = mysqli_real_escape_string($object->connect, $_POST["query"]);
+            $query = "
+            SELECT * FROM residents
+            WHERE spouse_name ='".$search."'";
+           $result = $object->execute_query($query);
+           $countName = mysqli_num_rows($result);
+          echo $countName;
+        }
    }  
  ?>  

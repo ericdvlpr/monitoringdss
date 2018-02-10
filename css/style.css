@@ -5,6 +5,8 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
+ 
+
 }
 
 
@@ -103,3 +105,17 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+ #result {
+   position: absolute;
+   width:20%;
+   max-width:199px;
+   cursor: pointer;
+   overflow-y: auto;
+   max-height: 400px;
+   box-sizing: border-box;
+   z-index: 1001;
+  }
+  .link-class:hover{
+   background-color:#f1f1f1;
+  
+  }

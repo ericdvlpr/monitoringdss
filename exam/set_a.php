@@ -1,5 +1,8 @@
 <div class="row">
 <?php 
+if(empty($_SESSION['myname'])) {
+    header("location: index.php");
+}
 $questions = mysqli_query($connect,"SELECT * FROM questions WHERE qset='A'");
 while($fetch = mysqli_fetch_array($questions)){
 ?>

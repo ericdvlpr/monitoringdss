@@ -4,6 +4,13 @@
 
 						<?php include 'includes/sidemenu.php';?> 
               			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+              				<form class="navbar-form navbar-right" action='search_result.php' method="GET">
+						        <div class="form-group">
+						          <input type="text" name="search" a id="search" autocomplete="off" class="form-control" placeholder="Search Resident Here">
+						        </div>
+						        <ul class="list-group" id="result"></ul>
+						      
+						      </form>
           				<h1 class="page-header">Dashboard</h1>
 
 			          <div class="row placeholders">

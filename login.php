@@ -23,10 +23,9 @@ if(isset($_POST['login'])){
 }
 
 ?>
-<div class="row ">
+<div class="row" style="background-image: url(css/ct.jpg); background-size: 100% 100%; background-position:center;">
 <form method="POST">
-	<div class="col-md-4 col-md-offset-4 well login">
-		<h1 class="page-header text-center">LOGIN</h1>
+	<div class="col-md-4 col-md-offset-4 well login"><h1 class="page-header text-center" style="font-weight: bold;">LOGIN</h1>
 		<?php if(isset($message)){
 						echo '<label class="text-danger">'.$message.'</label>';
 					} ?>

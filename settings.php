@@ -25,7 +25,7 @@
           				</div>
 		     	</div>  
 	</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModalGrant" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,19 +51,23 @@
 		    <div class="col-sm-9">
 		      <select required="true" class="form-control" name="income" id="income">
                   <option value="">Please Select</option>
-                  <option value="0-1000">0-1000</option>
-                  <option value="1000-2000">1000-2000</option>
-                  <option value="3000-4000">3000-4000</option>
-                  <option value="5000-6000">5000-6000</option>
-                  <option value="7000-8000">7000-8000</option>
-                  <option value="9000-10000">9000-10000</option>
+                  <option value="10000">10000</option>
+                  <option value="20000">20000</option>
+                  <option value="30000">30000</option>
+                  <option value="40000">40000</option>
+                  <option value="50000">50000</option>
+                  <option value="60000">60000</option>
+                  <option value="70000">70000</option>
+                  <option value="80000">80000</option>
+                  <option value="90000">90000</option>
+                  <option value="100000">100000</option>
               </select>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="inputPassword3" class="col-sm-3 control-label">Age Average</label>
 		    <div class="col-sm-9">
-		      <input type="text" class="form-control" name="age_ave" id="age_ave" min="6" max="18" placeholder="Age Average">
+		      <input type="number" class="form-control" name="age_ave" id="age_ave" min="6"  placeholder="Age Average">
 		    </div>
 		  </div>
       </div>

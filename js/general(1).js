@@ -235,13 +235,6 @@
                          return false;
                         }
                 });  
-                $(document).on('change','#educational',function(){
-                  var val = $(this).val();
-                  if(val =='seniorhigh'){
-                    $('#grade').removeAttr("disabled");
-                  }
-                 
-                });
                 $(document).on('click', '#add', function(){
                      
                           var html = '';
@@ -250,8 +243,8 @@
                           html += "<td><div class='col-sm-12'><input type='text' name='chname[]' class='form-control name' autofocus /></td>";
                           html += "<td><div class='col-sm-12'><input type='date' name='chbday[]' class='form-control bday' /></div></td>";
                           html += "<td><div class='col-sm-12'><select class='form-control' name='chgender[]' required><option value=''>Please Select</option><option value='Male'>Male</option><option value='Female'>Female</option></select></div></td>";
-                          html += "<td><div class='col-sm-12'><select name='educational[]' class='form-control educational' id='educational' required><option value=''>Please Select</option><option value='elementary'>Elementary</option><option value='juniorhigh'>Junior HighSchool</option><option value='seniorhigh'>Senior HighSchool</option><option value='college'>College</option></select></div></td>";
-                          html += "<td><div class='col-sm-12'><input type='number' min='65' max='95' name='chgrade[]' class='form-control grade' id='grade' disabled /></div></td>";
+                          html += "<td><div class='col-sm-12'><input type='number' min='65' max='95' name='chgrade[]' class='form-control grade' /></div></td>";
+                          html += "<td><div class='col-sm-12'><input type='text' name='educational[]' class='form-control educational' /></div></td>";
                           html += '<td><div class="col-sm-12"><button type="button" name="remove" class="btn btn-danger btn-sm remove"><span class="glyphicon glyphicon-minus"></span></button></td></tr>';
                           $('#children_table').append(html);
                 });
@@ -322,51 +315,4 @@
                      $('#result').append('<li class="list-group-item link-class">No record of resident!</li>');
                    }
                 });
-                $('#name').on('blur',function(event){
-                   var query = $('#name').val();
-                   
-                   var action = "validate";
-                    $.ajax({
-                     url:"core/action.php",
-                     method:"POST",
-                     data:{query:query, action:action},
-                     success:function(data)
-                     {
-                      if(data == 1){
-                        alert('Resident name is already exist');
-                          $('#form-group-name').addClass('has-error');
-                          $('#button_action').attr("disabled","disabled");
-                      }else{
-                         $('#form-group-name').removeClass('has-error');
-                           $('#button_action').removeAttr("disabled");
-                      }
-                     }
-                    });
-                 
-                });  
-                $('#spname').on('blur',function(event){
-                   var query = $('#spname').val();
-                   
-                   var action = "validate spouse";
-                    $.ajax({
-                     url:"core/action.php",
-                     method:"POST",
-                     data:{query:query, action:action},
-                     success:function(data)
-                     {
-                      if(data == 1){
-                        alert('Spouse name is already exist');
-                          $('#form-group-spname').addClass('has-error');
-                          $('#button_action').attr("disabled","disabled");
-                      }else{
-                            $('#form-group-spname').removeClass('has-error');
-                            $('#button_action').removeAttr("disabled");
-                      }
-                     }
-                    });
-                 
-                });  
-
-
-
 });  
