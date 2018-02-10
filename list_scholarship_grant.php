@@ -1,12 +1,8 @@
 <?php include 'includes/header.php';?>  
     <div class="container-fluid"> 
         <div class="row">
-        	<ol class="breadcrumb">
-			  <li><a href="index.php">Home</a></li>
-			  <li><a href="reports.php">Reports</a></li>
-			  <li class="active">Scholarship Grant</li>
-			</ol>
 			<div class="page-header">
+
 			<div class="btn-group">
 					<button class="btn btn-default" id='print' onclick="printContent('div1')"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> PRINT</button>
 				</div>

@@ -48,16 +48,20 @@ session_start();
            ';  
            while($row = mysqli_fetch_object($result))  
            {  
-
+                if($row->gender== 'M'){
+                  $gender = 'Male';
+                }else{
+                  $gender = 'Female';
+                }
                 $output .= '  
                 <tr>       
                      <td><a href="viewResident.php?id='.$row->resident_id.'">'.$row->resident_id.'</a></td>  
                      <td>'.$row->resident_name.'</td>   
                      <td>'.$row->address.'</td>  
-                     <td>'.$row->gender.'</td>  
+                     <td>'.$gender.'</td>  
                      <td>'.$row->birthday.'</td>  
                      <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs updateResident">Update</button></td>  
-                     
+
                 </tr>  
                 ';  
            }  
@@ -95,7 +99,7 @@ session_start();
                      <td>'.$row->grade_average.'</td> 
                      <td>'.number_format($row->annual_income).'</td> 
                      <td>'.$row->age_average.'</td> 
-                     <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs updateGrant">Update</button></td>  
+                     <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs updateQuestion">Update</button></td>  
                 </tr>  
                 ';  
            }  
@@ -121,6 +125,7 @@ session_start();
                      {    
                   $grantGradeAve=$row->grade_average; 
                     $query3 = "SELECT * FROM family_table ft JOIN exams e ON ft.code = e.passcode WHERE e.percentage >= 80  "; 
+
                     $result3 = $this->execute_query($query3);
                     }
           $result = mysqli_num_rows($result3);
@@ -132,7 +137,7 @@ session_start();
                      while($row = mysqli_fetch_object($result))  
                      {    
                   $grantAnnualIncome=$row->annual_income;  
-          $query1 = "SELECT * FROM residents WHERE annual_income <= '$grantAnnualIncome' ";  
+          $query1 = "SELECT * FROM residents WHERE annual_income < '$grantAnnualIncome' ";  
           $result1 = $this->execute_query($query1);
                     }
           $result = mysqli_num_rows($result1);
@@ -147,21 +152,12 @@ session_start();
                       
             $annual_income=$row->annual_income; 
           $query1 = "SELECT * FROM family_table ft JOIN residents rs ON ft.fam_id=rs.resident_id WHERE ft.age <= '$grantAgeAve' AND rs.annual_income <= '$annual_income'";
+
           $result1 = $this->execute_query($query1); 
                     }
           $result = mysqli_num_rows($result1);
           return $result;
       }
-      // function upload_file($file)  
-      // {  
-      //      if(isset($file))  
-      //      {  
-      //           $extension = explode('.', $file["name"]);  
-      //           $new_name = rand() . '.' . $extension[1];  
-      //           $destination = './upload/' . $new_name;  
-      //           move_uploaded_file($file['tmp_name'], $destination);  
-      //           return $new_name;  
-      //      }  
-      // }  
+ 
  }  
  ?>  

@@ -104,6 +104,7 @@ body {
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+<<<<<<< HEAD
 }
  #result {
    position: absolute;
@@ -119,3 +120,6 @@ body {
    background-color:#f1f1f1;
   
   }
+=======
+}
+>>>>>>> parent of 9964f96... Update Repo

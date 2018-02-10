@@ -13,7 +13,6 @@
 	      <link rel="stylesheet" href="css/style.css">
 	      <link href="css/bootstrap-glyphicons.css" rel="stylesheet">
 	      <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-
       </head> 
  <body>  
  	<?php include 'includes/nav.php'; ?>

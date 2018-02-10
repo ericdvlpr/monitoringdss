@@ -56,8 +56,7 @@ include_once('myconnection.php');
 			if($get_result[3] >= 80){  
 				echo '<h5><div class="alert alert-block alert-success">Congratulations! You Passed.</div></h5>';
 				echo 'Your Score is:';
-				echo '<h1>'.$get_result[2].'/10</h1>';
-				echo '<h1>'.$get_result[3].'%</h1>';
+				echo '<h1>'.$get_result[2].'%</h1>';
 				echo '<br />';
 			?>
 			<button id="noprint" class="btn-inverse btn-large" onclick="window.print();">Print Result</button>
@@ -66,8 +65,7 @@ include_once('myconnection.php');
 			}else{
 				echo '<h5><div class="alert alert-block alert-danger">Sorry! But You Failed.</div></h5>';
 				echo 'Your Score is:';
-				echo '<h1>'.$get_result[2].'/10</h1>';
-				echo '<h1>'.$get_result[3].'%</h1>';
+				echo '<h1>'.$get_result[2].'%</h1>';
 				echo '<hr />';
 			?>
 			<a href="logout.php"><button class="btn-danger btn-large" >Logout</button></a>
