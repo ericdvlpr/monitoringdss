@@ -28,14 +28,14 @@
 							           {    
 											echo $grantGradeAve=$row->grade_average;
 									 	}
-							$query3 = "SELECT * FROM family_table ft JOIN exams e ON ft.code = e.passcode JOIN residents rs ON rs.resident_id=ft.fam_id WHERE e.percentage >= 80 "; 
+							$query3 = "SELECT * FROM family_table ft JOIN exams e ON ft.code = e.passcode JOIN residents rs ON rs.resident_id=ft.fam_id JOIN barangay brgy ON rs.address = brgy.id WHERE e.percentage >= 80 "; 
 							$result3 = $object->execute_query($query3);
 							  while($row = mysqli_fetch_object($result3))  
 					           {  
 					           		echo "<tr>
-											<td>".$row->resident_id."</td>
+											<td><a href='viewResident.php?id=".$row->resident_id."'>".$row->resident_id."</a></td>
 											<td>".$row->chresident_name."</td>
-											<td>".$row->address."</td>
+											<td>".$row->barangay."</td>
 											<td>".$row->grade_ave."</td>
 											<td>".$row->score."/10</td>
 											<td>".$row->percentage."</td>

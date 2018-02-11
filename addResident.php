@@ -40,7 +40,7 @@
                                                 $result = $object->execute_query($query);
                                                   while($row = mysqli_fetch_object($result)) {  
                                                           echo "
-                                                        <option value=".$row->barangay.">".$row->barangay."</option>
+                                                        <option value=".$row->id.">".$row->barangay."</option>
                                                            ";
                                                        }
                                                ?>

@@ -21,14 +21,14 @@
 			          				<td>Command</td>
 			          			</tr>
 			          			<?php 
-			          				$query = "SELECT * FROM residents ORDER BY resident_id DESC ";
+			          				$query = "SELECT * FROM residents rs JOIN barangay brgy ON rs.address = brgy.id ORDER BY resident_id DESC ";
 								  		$result = $object->execute_query($query);   
 								           while($row = mysqli_fetch_object($result)) { 
 
 								           	echo "<tr>
 							          				<td><a href='viewResident.php?id=".$row->resident_id."'>".$row->resident_id."</a></td>
 							          				<td>".$row->resident_name."</td>
-							          				<td>".$row->address."</td>
+							          				<td>".$row->barangay."</td>
 							          				<td>".$row->gender."</td>
 							          				<td>".$row->birthday."</td>
 							          				<td>".$row->spouse_name."</td>

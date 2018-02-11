@@ -6,6 +6,12 @@
 				<div class="btn-group">
 					<button class="btn btn-default" id='print' onclick="printContent('div1')"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> PRINT</button>
 				</div>
+				<div class="panel panel-default">
+				  <div class="panel-heading">Fitler</div>
+				  <div class="panel-body">
+				    Panel content
+				  </div>
+				</div>
 					<div id='div1'>
 							<div class="col-md-12">
 								<h1 class="text-center">List of Qualified for Supply Grant</h1>
@@ -24,7 +30,7 @@
 										while($row = mysqli_fetch_object($result)) {    
 											  $grantAgeAve=$row->age_average;   
 											  $annual_income=$row->annual_income;   
-											  $query1 = "SELECT * FROM family_table ft JOIN residents rs ON ft.fam_id=rs.resident_id WHERE ft.age <= '$grantAgeAve' AND rs.annual_income <= '$annual_income' "; 
+											  $query1 = "SELECT * FROM family_table ft JOIN residents rs ON ft.fam_id=rs.resident_id JOIN barangay brgy ON rs.address = brgy.id WHERE ft.age <= '$grantAgeAve' AND rs.annual_income <= '$annual_income' "; 
 											  $result1 = $object->execute_query($query1);
 											  $rowCount = mysqli_num_rows($result1);
 											  if($rowCount==0) {
@@ -34,11 +40,11 @@
 											    }else{
 													while($row = mysqli_fetch_object($result1)) {  
 													         	echo "<tr>
-																<td>".$row->resident_id."</td>
+																<td><a href='viewResident.php?id=".$row->resident_id."'>".$row->resident_id."</a></td>
 																<td>".$row->chresident_name."</td>
 																<td>".$row->age."</td>
 																<td>".number_format($row->annual_income)."</td>
-																<td>".$row->address."</td>
+																<td>".$row->barangay."</td>
 													         		</tr>";
 													}
 												}

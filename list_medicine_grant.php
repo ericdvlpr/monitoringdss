@@ -29,14 +29,14 @@
 								  		$result = $object->execute_query($query);   
 								           while($row = mysqli_fetch_object($result)) {    
 												$grantAnnualIncome=$row->annual_income;  
-								$query1 = "SELECT * FROM residents WHERE annual_income <= '$grantAnnualIncome' "; 
+								$query1 = "SELECT * FROM residents rs JOIN barangay brgy ON rs.address = brgy.id WHERE annual_income <= '$grantAnnualIncome' "; 
 								$result1 = $object->execute_query($query1);
 								  while($row = mysqli_fetch_object($result1)) {  
 						           		echo "<tr>
 												<td><a href='viewResident.php?id=".$row->resident_id."'>".$row->resident_id."</a></td>
 												<td>".$row->resident_name."</td>
 												<td>".number_format($row->annual_income)."</td>
-												<td>".$row->address."</td>
+												<td>".$row->barangay."</td>
 						           			</tr>";
 						           }
 						       }
